@@ -1,14 +1,6 @@
 <html>
-
-  <body onload="loadXMLDoc()">
-    <div id="testDiv">
-      <p>{{token1}}</p>
-      <p>{{token2}}</p>
-      <p>{{token3}}</p>
-      <p>{{token4}}</p>
-    </div>
+  <head>
     <script>
-
       function loadXMLDoc() {
         var xmlhttp;
         if (window.XMLHttpRequest) {
@@ -37,5 +29,13 @@
         xmlhttp.send();
       }
     </script>
+  </head>
+  <body onload="loadXMLDoc()">
+    <div id="testDiv">
+      <p>{{token1}}</p>
+      <p>{{token2}}</p>
+      <p>{{token3}}</p>
+      <p>{{token4}}</p>
+    </div>
   </body>
 </html>
