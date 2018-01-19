@@ -1,0 +1,41 @@
+<html>
+
+  <body onload="loadXMLDoc()">
+    <div id="testDiv">
+      <p>{{token1}}</p>
+      <p>{{token2}}</p>
+      <p>{{token3}}</p>
+      <p>{{token4}}</p>
+    </div>
+    <script>
+
+      function loadXMLDoc() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+          xmlhttp = new XMLHttpRequest();
+        } else {
+          // code for older browsers
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            const resp2 = JSON.parse(this.responseText)
+            const allKeys = Object.keys(resp2)
+            let text = document.getElementById("testDiv").innerHTML
+            allKeys.map(key => {
+              const newKey = '{{' + key + '}}'
+              if (text.includes(newKey)) {
+                const newText = text.replace(newKey, resp2[key])
+                text = newText
+                return text
+              }
+            })
+            document.getElementById("testDiv").innerHTML = text
+          }
+        };
+        xmlhttp.open("POST", "http://127.0.0.1:3020/getTokens", true);
+        xmlhttp.send();
+      }
+    </script>
+  </body>
+</html>
